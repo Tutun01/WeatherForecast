@@ -13,20 +13,20 @@ class UserWeatherSeeder extends Seeder
      */
     public function run(): void
     {
-        $city= $this->command->getOutput()->ask('Unesite ime grada');
+        $city= $this->command->getOutput()->ask('Enter the name of the city');
         if ($city == null)
         {
-            $this->command->getOutput()->error('Niste uneli ime grad');
+            $this->command->getOutput()->error('You have not entered a city name');
         }
-        $temperature= $this->command->getOutput()->ask('temperaturu');
+        $temperature= $this->command->getOutput()->ask('Enter the temperature');
         if ($temperature == null)
         {
-            $this->command->getOutput()->error('Niste temperaturu');
+            $this->command->getOutput()->error('You have not entered a temperature');
         }
         weatherModel::create([
                 'city' => $city,
                 'temperatures' => $temperature,
             ]);
-        $this->command->getOutput()->info("Uspesno ste uneli novi grad $city sa temperaturom $temperature stepeni");
+        $this->command->getOutput()->info("You have successfully entered a new city $city with temperature $temperature degrees");
     }
 }

@@ -15,9 +15,9 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $amount = $this->command->getOutput()->ask('Koliko korisnika zelite da napravite?',500);
+        $amount = $this->command->getOutput()->ask('How many users do you want to create?',500);
 
-        $pass = $this->command->getOutput()->ask('Koja sifra treba biti?',"123456");
+        $pass = $this->command->getOutput()->ask('What code should it be?',"123456");
 
         $faker=Factory::create();
 
