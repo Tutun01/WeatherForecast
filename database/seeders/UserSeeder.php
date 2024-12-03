@@ -17,17 +17,37 @@ class UserSeeder extends Seeder
     {
         $amount = $this->command->getOutput()->ask('How many users do you want to create?',500);
 
+        $username =  $this->command->getOutput()->ask('Enter your username');
+        if ($username == 0)
+        {
+            $this->command->getOutput()->error('Enter your username');
+            return;
+        }
+
+        $email = $this->command->getOutput()->ask('Enter your email');
+        if ($email == 0)
+        {
+            $this->command->getOutput()->error('Enter your email');
+            return;
+        }
+
+        $user = User::where(['email' => $email])->first();
+        if($user instanceof User)
+        {
+            $this->command->getOutput()->error('User exist');
+            return;
+        }
+
         $pass = $this->command->getOutput()->ask('What code should it be?',"123456");
 
-        $faker=Factory::create();
 
         $this->command->getOutput()->progressStart($amount);
 
         for($i = 0; $i < $amount; $i++)
         {
             User::create([
-                'name' => $faker->name,
-                'email' => $faker->email,
+                'name' => $username,
+                'email' =>$email,
                 'password' => Hash::make($pass)
             ]);
 
