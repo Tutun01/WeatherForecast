@@ -17,12 +17,22 @@ class UserWeatherSeeder extends Seeder
         if ($city == null)
         {
             $this->command->getOutput()->error('You have not entered a city name');
+            return;
         }
         $temperature= $this->command->getOutput()->ask('Enter the temperature');
         if ($temperature == null)
         {
             $this->command->getOutput()->error('You have not entered a temperature');
+            return;
         }
+
+            $user = weatherModel::where(['city' =>$city])->first();
+            if ($user != null)
+            {
+                $this->command->getOutput()->error('The city already exists');
+                return;
+            }
+
         weatherModel::create([
                 'city' => $city,
                 'temperatures' => $temperature,
