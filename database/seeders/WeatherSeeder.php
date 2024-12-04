@@ -20,12 +20,21 @@ class WeatherSeeder extends Seeder
             "Zagreb" => 26
         ];
 
-        foreach ($forecast as $city => $temperature)
+        foreach ($forecast as $city => $temperature )
         {
+
+            $user = weatherModel::where(['city' =>$city])->first();
+            if ($user != null)
+            {
+                $this->command->getOutput()->error('The city already exists');
+                continue;
+            }
+
             weatherModel::create([
                 'city' => $city,
-                'temperatures' => $temperature
+
             ]);
+            $this->command->getOutput()->info("You have successfully entered a new city $city");
         }
     }
 }
