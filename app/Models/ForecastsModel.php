@@ -12,4 +12,9 @@ class ForecastsModel extends Model
     protected $fillable = [
         'city_id', 'temperature', 'date'
     ];
+
+    public function city()
+    {
+        return $this->belongsTo(Cities::class, 'city_id');
+    }
 }
