@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class weatherModel extends Model
 {
-    protected $table = "weather_models";
+    protected $table = "weather";
 
     protected $fillable = [
         "city", "temperatures"
