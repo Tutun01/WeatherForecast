@@ -14,11 +14,15 @@ return new class extends Migration
         Schema::create('forecasts_models', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedInteger('city_id');
-            $table->float('tempereture');
-            $table->date('date');
+            $table->unsignedBigInteger('city_id');
+            $table->float('temperature');
+            $table->date('forecast_date');
 
             $table->timestamps();
+
+            $table->foreign("city_id")
+                ->references("id")
+                ->on("cities");
         });
     }
 
