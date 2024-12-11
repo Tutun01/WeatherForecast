@@ -12,4 +12,8 @@ class ForecastsModel extends Model
         'city_id', 'temperature', 'forecast_date'
     ];
 
+    public function relation()
+    {
+        return $this->hasOne(Cities::class, 'id', 'city_id');
+    }
 }
