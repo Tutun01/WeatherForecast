@@ -6,7 +6,6 @@ use App\Models\Cities;
 use App\Models\ForecastsModel;
 use Carbon\Carbon;
 use Faker\Factory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ForecastSeeder extends Seeder

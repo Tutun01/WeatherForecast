@@ -3,8 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Cities;
-use Composer\Factory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class CitiesSeeder extends Seeder
