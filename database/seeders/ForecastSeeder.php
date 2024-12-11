@@ -25,8 +25,8 @@ class ForecastSeeder extends Seeder
            for ($i=0; $i < 5; $i++){
            ForecastsModel::create([
             'city_id' => $city->id,
-             'temperature' =>$faker->numberBetween(-5, 40),
-             'forecast_date' => Carbon::now()
+             'temperature' => rand (15, 30),
+             'forecast_date' => Carbon::now()->addDays(rand(1,30))
           ]);
            }
        }
