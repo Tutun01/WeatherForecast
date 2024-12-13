@@ -20,6 +20,15 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/forecast', [WeatherController::class, 'index']);
 
+
+Route::view("/admin/weather", "admin.weather_index");
+
+
+
+
+
+
+
 Route::get("/forecast/{city:name}", [TemperatureController::class, 'index']);
 
 require __DIR__.'/auth.php';
