@@ -12,8 +12,8 @@ class Cities extends Model
         'name', 'temperature'
     ];
 
-    public function forecast()
+    public function forecasts()
     {
-        return $this->hasMany(ForecastsModel::class, 'city_id');
+        return $this->hasMany(ForecastsModel::class, 'city_id', 'id');
     }
 }
