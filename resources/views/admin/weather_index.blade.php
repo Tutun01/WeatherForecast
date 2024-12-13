@@ -1,4 +1,5 @@
-<form xmlns:input="http://www.w3.org/1999/html">
+<form method="POST" action="{{route('weather.update') }}">
+    {{csrf_field()}}
 
     <input type="text" name="temperature" placeholder="Enter temperature">
     <select name="city_id">
@@ -9,7 +10,7 @@
     </select>
     <button>ADD</button>
 
-</form>
+</form >
 
 <div>
 
