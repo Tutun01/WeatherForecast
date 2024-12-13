@@ -23,6 +23,7 @@ class CitiesSeeder extends Seeder
         {
             Cities::create([
                 'name' => $faker->city,
+                'temperature' => $faker->numberBetween(-5,40)
 
             ]);
 
