@@ -2,23 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cities;
+use App\Models\ForecastsModel;
+
 class TemperatureController extends Controller
 {
-    public function index($city)
+    public function index(Cities $city)
     {
 
-        $forecast = [
-            "beograd" => [22, 24, 25, 20, 18],
-            "sarajevo" => [20, 24, 22, 22, 25]
-        ];
-
-        // beograd -> BEOGRAD -> bEOGRAD
-        $city = strtolower($city);
-        if (!array_key_exists($city, $forecast)) {
-            die("City not exists");
-        }
-
-        dd($forecast[$city]);
+        $forecast= ForecastsModel::where(['city_id' => $city->id])->get();
+        return view('forecasts', compact('forecast'));
 
 
     }
