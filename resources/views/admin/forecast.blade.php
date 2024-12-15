@@ -1,5 +1,6 @@
-<form method="POST" action="{{route('weather.update') }}">
-    {{csrf_field()}}
+
+<form method="POST">
+    <input type="text" name="temperature" placeholder="Enter temperature">
 
     <select name="city_id">
 
@@ -7,25 +8,27 @@
             <option value="{{$city->id}}">{{$city->name }}</option>
         @endforeach
     </select>
-    <input type="text" name="temperature" placeholder="Enter temperature">
-    <select name="weather">
-        <option>rainy</option>
-        <option>snowy</option>
-        <option>sunny</option>
+
+    <select>
+        @foreach(\App\Models\ForecastsModel::WEATHERS as $weather)
+            <option>{{ $weather }}</option>
+        @endforeach
     </select>
-    <input type="number" name="precipitation" placeholder="Enter the precipitation chance">
-    <input type="date" name="date">
+
+    <input type="number" name="probability" placeholder="Enter the precipitation chance">
+
+    <input type="date" name="forecast_date" >
 
     <button>Save</button>
+</form>
 
-</form >
+@foreach(\App\Models\Cities::all() as $city)
 
-<div>
+    <p>{{ $city->name }}</p>
+    <ul>
+        @foreach($city->forecasts as $forecast)
+            <li>{{$forecast->forecast_date}} - {{$forecast->temperature}}</li>
+        @endforeach
+    </ul>
 
-    @foreach(\App\Models\WeatherModel::all() as $weather)
-        <p> {{ $weather->city->name ?? 'Unknown City'}} - {{ $weather->temperature }}</p>
-    @endforeach
-
-
-</div>
-
+@endforeach

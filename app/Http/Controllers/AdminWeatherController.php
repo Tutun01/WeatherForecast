@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cities;
 use App\Models\WeatherModel;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,13 @@ class AdminWeatherController extends Controller
     {
         $request->validate([
             "temperature" => "required",
-            "city_id" => "required|exists:cities,id"
+            "city_id" => "required|exists:cities,id",
+            "precipitation" => "required",
+            "created_at" => "required"
+        ]);
+
+        Cities::created([
+            ""
         ]);
 
 
