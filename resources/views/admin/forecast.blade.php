@@ -1,5 +1,8 @@
 
-<form method="POST">
+<form method="POST" action="{{route("forecast.save")}}">
+
+    {{csrf_field()}}
+
     <input type="text" name="temperature" placeholder="Enter temperature">
 
     <select name="city_id">
@@ -9,7 +12,7 @@
         @endforeach
     </select>
 
-    <select>
+    <select name="weather_type">
         @foreach(\App\Models\ForecastsModel::WEATHERS as $weather)
             <option>{{ $weather }}</option>
         @endforeach

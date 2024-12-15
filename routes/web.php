@@ -28,7 +28,7 @@ Route::post("/admin/weather/update", [AdminWeatherController::class, 'update'])
 
 Route::view("/admin/forecasts", "admin.forecast");
 Route::post("/admin/forecasts/save",[AdminWeatherController::class, 'index'])
-    ->name("weather.update");
+    ->name("forecast.save");
 
 
 
