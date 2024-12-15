@@ -20,5 +20,16 @@ class AdminWeatherController extends Controller
 
        return redirect()->back();
     }
+    public function index(Request $request)
+    {
+        $request->validate([
+            "temperature" => "required",
+            "city_id" => "required|exists:cities,id"
+        ]);
+
+
+        return view("admin.forecast");
+    }
+}
 
 
