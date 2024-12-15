@@ -9,7 +9,7 @@ class Cities extends Model
     protected $table = 'cities';
 
     protected $fillable = [
-        'name', 'temperature'
+        'name', 'temperature', 'precipitation'
     ];
 
     public function forecasts()
