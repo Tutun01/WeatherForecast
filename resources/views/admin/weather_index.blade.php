@@ -15,6 +15,9 @@
 <div>
 
     @foreach(\App\Models\WeatherModel::all() as $weather)
+
+
+
         <p> {{ $weather->city->name ?? 'Unknown City'}} - {{ $weather->temperature }}</p>
     @endforeach
 

@@ -1,3 +1,3 @@
-@foreach($forecast as $weather)
-    <p> Current temperature : {{ $weather->temperature }} in city {{$weather->city->name}}</p>
+@foreach($forecast as $weather )
+    <p> Current temperature : {{ $weather->temperature }} in city </p>
 @endforeach
