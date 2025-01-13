@@ -1,4 +1,3 @@
-
 <form method="POST" action="{{route("forecast.save")}}">
 
     {{csrf_field()}}
@@ -20,7 +19,7 @@
 
     <input type="number" name="probability" placeholder="Enter the precipitation chance">
 
-    <input type="date" name="forecast_date" >
+    <input type="date" name="forecast_date">
 
     <button>Save</button>
 </form>
@@ -30,7 +29,11 @@
     <p>{{ $city->name }}</p>
     <ul>
         @foreach($city->forecasts as $forecast)
-            <li>{{$forecast->forecast_date}} - {{$forecast->temperature}}</li>
+
+            @php $color= \App\Http\ForecastHelper::getColorByTemperature($forecast->temperature) @endphp
+
+
+            <li>{{$forecast->forecast_date}} - <span style="color: {{$color}}">{{$forecast->temperature}}</span></li>
         @endforeach
     </ul>
 
