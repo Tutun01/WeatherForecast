@@ -1,3 +1,3 @@
-@foreach($city->forecasts as $test)
-    <p> Date: {{ $test -> forecast_date }} - Temperature {{ $test -> temperature }} </p>
+@foreach($forecasts as $forecast)
+    <p> Date: {{ $forecast -> forecast_date }} - Temperature {{ $forecast -> temperature }} </p>
 @endforeach
