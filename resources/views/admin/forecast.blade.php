@@ -2,14 +2,13 @@
 
     {{csrf_field()}}
 
-    <input type="text" name="temperature" placeholder="Enter temperature">
-
     <select name="city_id">
-
         @foreach(\App\Models\Cities::all() as $city)
             <option value="{{$city->id}}">{{$city->name }}</option>
         @endforeach
     </select>
+
+    <input type="text" name="temperature" placeholder="Enter temperature">
 
     <select name="weather_type">
         @foreach(\App\Models\ForecastsModel::WEATHERS as $weather)
