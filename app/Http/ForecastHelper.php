@@ -21,13 +21,13 @@ class ForecastHelper
 
         if ($temperature <= 0)
         {
-            $color= "lightnlue";
+            $color= "orange";
         }
         else if ($temperature >= 1 && $temperature <= 9)
         {
-            $color="gray";
+            $color="purple";
         }
-        else if ($temperature > 10 && $temperature < 15 )
+        else if ($temperature >= 10 && $temperature < 15 )
         {
             $color = "blue";
         }
