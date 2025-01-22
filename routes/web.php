@@ -6,8 +6,8 @@ use App\Http\Controllers\TemperatureController;
 use App\Http\Controllers\WeatherController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/welcome', [WeatherController::class, 'index'])->name('welcome');
 
+Route::view('/', "welcome");
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -33,7 +33,10 @@ Route::post("/admin/forecasts/save",[AdminWeatherController::class, 'index'])
 
 
 
+Route::get("/forecast/search", [\App\Http\Controllers\ForecastController::class, 'search'])
+    ->name("forecast.search");
+Route::get("/forecast/{city:name}", [TemperatureController::class, 'index'])
+    ->name("forecast.permalink");
 
-Route::get("/forecast/{city:name}", [TemperatureController::class, 'index']);
 
 require __DIR__.'/auth.php';
