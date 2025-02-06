@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Cities extends Model
 {
     protected $table = 'cities';
@@ -23,8 +24,7 @@ class Cities extends Model
     {
         return $this->hasOne(ForecastsModel::class, 'city_id', 'id')
             ->whereDate("forecast_date", Carbon::now());
-}
-
+    }
 }
 
 
