@@ -10,7 +10,7 @@ class TemperatureController extends Controller
     public function index(Cities $city)
     {
 
-        $forecasts = ForecastsModel::where(['city_id' => $city->id])->get();
+        $forecasts = ForecastsModel::with('name')->where(['city_id' => $city->id])->get();
 
         return view('forecasts', compact('forecasts'));
 
