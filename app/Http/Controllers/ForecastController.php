@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cities;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ForecastController extends Controller
 {
@@ -19,7 +20,14 @@ class ForecastController extends Controller
                 ->with("error", "We did not find cities that meet your criteria");
         }
 
-        return view("search_results", compact("cities"));
+        $userFavourites = [];
+        if (Auth::check())
+        {
+            $userFavourites = Auth::user()->cityFavourites;
+            $userFavourites = $userFavourites->pluck('city-id')->toArray();
+        }
+
+        return view("search_results", compact("cities", "userFavourites"));
 
     }
 }
