@@ -3,7 +3,9 @@
 use App\Http\Controllers\AdminWeatherController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TemperatureController;
+use App\Http\Controllers\UserCities;
 use App\Http\Controllers\WeatherController;
+use App\Http\Middleware\AdminCheckMiddleware;
 use Illuminate\Support\Facades\Route;
 
 
@@ -21,14 +23,23 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/forecast', [WeatherController::class, 'index']);
 
+/**
+ * User cities
+ */
+Route::get("/user-cities/favourite/{city}", [UserCities::class, "favourite"])
+        ->name("city.favourite");
 
-Route::view("/admin/weather", "admin.weather_index");
-Route::post("/admin/weather/update", [AdminWeatherController::class, 'update'])
-    ->name("weather.update");
+Route::prefix("/admin")-> middleware(AdminCheckMiddleware::class)->group(function (){
 
-Route::view("/admin/forecasts", "admin.forecast");
-Route::post("/admin/forecasts/save",[AdminWeatherController::class, 'index'])
-    ->name("forecast.save");
+    Route::view("/weather", "admin.weather_index");
+    Route::post("/weather/update", [AdminWeatherController::class, 'update'])
+        ->name("weather.update");
+
+    Route::view("/forecasts", "admin.forecast");
+    Route::post("/forecasts/save",[AdminWeatherController::class, 'index'])
+        ->name("forecast.save");
+});
+
 
 
 
