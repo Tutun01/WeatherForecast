@@ -24,8 +24,9 @@ class ForecastController extends Controller
         if (Auth::check())
         {
             $userFavourites = Auth::user()->cityFavourites;
-            $userFavourites = $userFavourites->pluck('city-id')->toArray();
+            $userFavourites = $userFavourites->pluck('city_id')->toArray();
         }
+
 
         return view("search_results", compact("cities", "userFavourites"));
 
