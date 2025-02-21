@@ -6,10 +6,25 @@ use App\Http\Controllers\TemperatureController;
 use App\Http\Controllers\WeatherController;
 use App\Http\Middleware\AdminCheckMiddleware;
 use App\Http\Requests\UserCities;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
-Route::view('/', "welcome");
+Route::get('/', function () {
+
+    $userFavourites = [];
+
+    $user = Auth::user();
+    if($user !== null)
+    {
+        $userFavourites = \App\Models\UserCities::where([
+           'user_id' => $user->id
+        ])->get();
+    }
+
+
+    return view( "welcome", compact('userFavourites'));
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
