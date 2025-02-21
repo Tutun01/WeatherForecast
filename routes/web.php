@@ -29,6 +29,9 @@ Route::get('/forecast', [WeatherController::class, 'index']);
 Route::get("/user-cities/favourite/{city}", [UserCities::class, "favourite"])
         ->name("city.favourite");
 
+Route::get("/user-cities/unFavourite/{city}", [UserCities::class, "unFavourite"])
+    ->name("city.unfavourite");
+
 Route::prefix("/admin")-> middleware(AdminCheckMiddleware::class)->group(function (){
     Route::view("/weather", "admin.weather_index");
     Route::post("/weather/update", [AdminWeatherController::class, 'update'])
