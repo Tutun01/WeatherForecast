@@ -40,4 +40,5 @@ class UserCities extends Controller
         $favourite->delete();
         return redirect()->back();
     }
+
 }
