@@ -11,6 +11,7 @@
 
     @foreach($cities as $city)
 
+
         @php $icon =\App\Http\ForecastHelper::getIconByWeatherType($city->todaysForecast->weather_type); @endphp
 
         <p>
