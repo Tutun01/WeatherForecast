@@ -18,7 +18,7 @@
 
 
         <!-- IZ NEKOG RAZLOGA NISAM MOGAO POZVATI IKONICU! -->
-    @foreach($userFavourites as $userFavourite)
+        @foreach($userFavourites as $userFavourite)
             <p class="text-primary text-center"> {{($userFavourite->favourite->name)}} : {{$userFavourite->favourite->temperature}} °C</p>
         @endforeach
     </div>
