@@ -12,7 +12,7 @@ class GetRealWeather extends Command
      *
      * @var string
      */
-    protected $signature = 'weather:get-real';
+    protected $signature = 'weather:get-real {city}';
 
     /**
      * The console command description.
@@ -27,11 +27,23 @@ class GetRealWeather extends Command
     public function handle()
     {
         //method: Swagger Tool
-        $url = "https://api.weatherapi.com/v1/current.json?q=Beograd&lang=sr&key=c160bc867a394b1da24135226252102";
-        $response = Http::get($url);
+        $url = env("WEATHER_API_URL")."v1/forecast.json";
 
-        $response->json();
-        dd($response);
+        $params = [
+            "key" => env("WEATHER_API_KEY"),
+            "q" => $this->argument("city"),
+            "aqi" => "no",
+            "lang" =>"sr",
+            "days" => 5
+        ];
 
+        $response = Http::get($url, $params);
+
+        $jsonResponse = $response->json();
+
+        if (isset($jsonResponse['error']))
+        {
+            $this->output->error($jsonResponse['error']['message']);
+        }
     }
 }
