@@ -28,7 +28,6 @@ class GetRealWeather extends Command
      */
     public function handle()
     {
-
         $city = $this->argument("city");
 
             $dbCity = Cities::where(['name' => $city])->first();
