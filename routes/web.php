@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminWeatherController;
+use App\Http\Controllers\ForecastController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TemperatureController;
 use App\Http\Controllers\WeatherController;
@@ -61,7 +62,7 @@ Route::prefix("/admin")-> middleware(AdminCheckMiddleware::class)->group(functio
 
 
 
-Route::get("/forecast/search", [\App\Http\Controllers\ForecastController::class, 'search'])
+Route::get("/forecast/search", [ForecastController::class, 'search'])
     ->name("forecast.search");
 Route::get("/forecast/{city:name}", [TemperatureController::class, 'index'])
     ->name("forecast.permalink");
