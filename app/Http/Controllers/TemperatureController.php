@@ -4,20 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Cities;
 use App\Models\ForecastsModel;
+use App\Services\WeatherServices;
 use Illuminate\Support\Facades\Http;
 
 class TemperatureController extends Controller
 {
     public function index(Cities $city)
     {
+        $weatherService = new WeatherServices();
 
-        $response = Http::get(env("WEATHER_API_URL")."v1/astronomy.json", [
-            'key' => env("WEATHER_API_KEY"),
-            'q' => $city->name,
-            'aqi' => "no",
-        ]);
-
-        $jsonResponse = $response->json();
+        $jsonResponse = $weatherService->getSunsetAndSunrise($city->name);
         $sunrise = $jsonResponse['astronomy']['astro']['sunrise'];
         $sunset =  $jsonResponse['astronomy']['astro']['sunset'];
 
