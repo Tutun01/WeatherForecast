@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Cities;
 use App\Models\ForecastsModel;
+use App\Services\WeatherServices;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 
@@ -38,19 +39,8 @@ class GetRealWeather extends Command
         }
 
         //method: Swagger Tool
-        $url = env("WEATHER_API_URL")."v1/forecast.json";
-
-        $params = [
-            "key" => env("WEATHER_API_KEY"),
-            "q" => $city,
-            "aqi" => "no",
-            "lang" =>"sr",
-            "days" => 5
-        ];
-
-        $response = Http::get($url, $params);
-
-        $jsonResponse = $response->json();
+        $weatherService = new WeatherServices();
+        $jsonResponse = $weatherService->getForecast($city);
 
         if (isset($jsonResponse['error']))
         {
